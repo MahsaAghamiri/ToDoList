@@ -68,10 +68,10 @@ function addTask() {
 
 //remove task from list
 function removeTask(taskID) {
-    var taskIndex = todos.findIndex(function(task){
+    var taskIndex = todos.findIndex(function (task) {
         return task.id === taskID;
     });
-    todos.splice(taskIndex,1)
+    todos.splice(taskIndex, 1)
 
     // todos = todos.filter(function (item) {
     //     return item.id !== taskID;
@@ -82,13 +82,17 @@ function removeTask(taskID) {
 
 //make task done and not done
 function doneTask(taskID) {
-    todos.forEach(function (item) {
-        if (item.id === taskID && item.isDone === false) {
-            item.isDone = true;
-        } else if (item.id === taskID) {
-            item.isDone = false;
-        }
+    // todos.forEach(function (item) {
+    //     if (item.id === taskID && item.isDone === false) {
+    //         item.isDone = true;
+    //     } else if (item.id === taskID) {
+    //         item.isDone = false;
+    //     }
+    // });
+    var task = todos.find(function (currentTask) {
+        return currentTask.id === taskID;
     });
+    if (task) task.isDone = !task.isDone;
     renderTodoList();
     input.focus();
 }
